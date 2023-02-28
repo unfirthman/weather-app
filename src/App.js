@@ -1,12 +1,12 @@
 import "./App.css";
+import Header from "./components/header/Header.jsx";
 import Search from "./components/search";
 import CurrentWeather from "./components/current-weather/current-weather.js";
-import Forecast from "./components/forecast/forecast.js";
+import Forecast from "./components/forecast/forecast.jsx";
 import { WEATHER_API_URL, WEATHER_API_KEY } from "./api.js";
 import { useState } from "react";
 
 function App() {
-
     const [currentWeather, setCurrentWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
     const handleOnSearchChange = (searchData) => {
@@ -35,10 +35,15 @@ function App() {
     //console.log(forecastWeather);
 
     return (
-        <div className="container">
-            <Search onSearchChange={handleOnSearchChange} />
-            { currentWeather && <CurrentWeather data={currentWeather} /> }
-            { forecast && <Forecast data={ forecast }/> }
+        <div>
+            <div>
+                <Header />
+            </div>
+            <div className="container">
+                <Search onSearchChange={handleOnSearchChange} />
+                {currentWeather && <CurrentWeather data={currentWeather} />}
+                {forecast && <Forecast data={forecast} />}
+            </div>
         </div>
     );
 }
